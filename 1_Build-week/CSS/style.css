@@ -19,8 +19,6 @@ h1, h3 {
 b { /*RIPRISTINO IL BOLD*/
     font-weight: bold;
 }
-
-/*HEADER*/
 header {
     height: 2vw;
     margin-bottom: 6vw;
@@ -29,6 +27,19 @@ header {
 header img {
     height: 100%;
 }
+.allbutton {
+    background-color: #00ffff;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 1vw 2.2vw;
+    float: right;
+    border: none;
+    box-shadow: 0 0 10px #00ffff;
+    cursor: pointer;
+}
+/**************************** PRIMA PAGINA *******************/
+/*HEADER*/
+
 
 /*MAIN*/
 
@@ -86,12 +97,44 @@ input[type="checkbox"] {
     vertical-align: middle;
   } 
 
-button {
-    background-color: #00ffff;
-    font-weight: bold;
-    font-size: 1.2em;
-    float: right;
-    padding: 0.5vw 2.2vw;
+
+
+
+/************************** QUARTA PAGINA ****************/
+
+
+/******************************MAIN*******************/
+
+#fpage {
+ padding-left: 20em;
+ padding-right: 24em;
+ text-align: center;
+}
+
+#fpage p {
+    font-size: 1.5em;
+    margin-top: 1em;
+}
+
+
+/********************* FOOTER ************/
+
+footer input{
+    background-color: transparent;
     border: none;
-    box-shadow: 0 0 10px #00ffff;
+    opacity: 0.8;
+    color: #ffffff;
+    width: 88%;
+}
+
+hr {
+    border: 1px solid #d20094;
+}
+#minfo {
+    margin-top: 2em;
+    float: none;
+}
+::placeholder {
+    font-family: "Inter", sans-serif;
+    font-size: 1.4em;
 }
