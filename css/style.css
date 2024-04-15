@@ -1,3 +1,5 @@
+/* --------------------------------FORMATTAZIONE COMUNE ------------------------*/
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,400;0,700;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,400;0,700;1,300&display=swap');
 
@@ -10,15 +12,17 @@ body {
     font-size: 1.2rem;
     line-height: 1.65;
     color: white;
+    box-sizing: border-box;
 }
 
-h1, h3 {
+h1, h2, h3 {
     font-family: "Outfit", sans-serif;
 }
 
 b { /*RIPRISTINO IL BOLD*/
     font-weight: bold;
 }
+
 
 /*HEADER*/
 header {
@@ -29,6 +33,17 @@ header {
 header img {
     height: 100%;
 }
+
+button{
+    background-color: #00ffff;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 1vw 3vw;
+    border: none;
+    box-shadow: 0 0 10px #00ffff;
+}
+
+/* ------------------------------------- PAGINA UNO --------------------------- */
 
 /*MAIN*/
 
@@ -60,11 +75,12 @@ ul {
     width: 100%;
 }
 
+/* CHECKBOX CUSTOMIZZATO */
 input[type="checkbox"] {
     display: none;
-  }
+}
  
-  input[type="checkbox"] + label::before {
+input[type="checkbox"] + label::before {
     content: "";
     display: inline-block;
     width: 1.5vw;
@@ -73,25 +89,57 @@ input[type="checkbox"] {
     border: 2px solid white;
     margin-right: 1vw;
     vertical-align: middle;
-  }
-  input[type="checkbox"]:checked + label::before {
+}
+input[type="checkbox"]:checked + label::before {
     content: "\2713"; 
     font-size: 1em;
     line-height: 1em;
     text-align: center;
     color: white;
-  }
-  label {
+}
+label {
     color: white;
     vertical-align: middle;
-  } 
+} 
 
-button {
-    background-color: #00ffff;
-    font-weight: bold;
-    font-size: 1.2em;
+#bottone-destro {
     float: right;
-    padding: 0.5vw 2.2vw;
+}
+  /* --------------------------------- PAGINA QUATTRO --------------------------*/
+
+.main-centrato {
+    text-align: center;
+}
+
+h2 {
+    font-size: 3em;
+    line-height: 0.7;
+    margin-bottom: 2vw;
+}
+
+.main-centrato p {
+    font-size: 1.3em;
+}
+
+#stelle {
+    margin-bottom: 5vw;
+}
+
+#stelle img {
+    margin: 0.2vw;
+}
+
+#commento {
+    background-color: transparent;
+    width: 60%;
+    padding: 1vw;
     border: none;
-    box-shadow: 0 0 10px #00ffff;
+    border-bottom: #d20094 solid 1px;
+    margin-bottom: 5vw;
+}
+
+::placeholder {
+    font-family: "Inter", sans-serif;
+    color: grey;
+    font-size: 1.5em;
 }
