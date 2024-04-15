@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+body{
+    padding: 0%;
+    margin: 0%;
+    height: 100%;
+    background-size: cover;
+    background-image : url(../1_Build-week/assets/bg.jpg);
+    width: 100%;
+    
+}
+
+main{
+    margin-top: 30px;
+    margin-left: 70px;
+}
+
+#logoEpicode {
+    width: 15%;
+}
+
+body main p {
+    color: white;
+    font-family: "Outfit", sans-serif;
+    font-size: 60px;
+
+}
+
+body main h1 {
+    font-weight: bold;
+    font-family: "Outfit", sans-serif;
+    color: white;
+    font-size: 60px;
+}
+
+body main h2 {
+    font-family: "Outfit", sans-serif;
+    color:  rgb(194, 18, 141) ;
+    font-size: 20px;
+}
+
+body main h3 {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+}
+
+.lista {
+    padding-left: 30px;
+    
+}
+
+ul li {color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    margin-bottom: 7px;}
+
+label {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+}
+
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+ 
+  input[type="checkbox"] + label::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border: 2px solid white;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+
+  input[type="checkbox"]:checked + label::before {
+    content: "\2713"; 
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+    color: white;
+  }
+
+  label {
+    color: white;
+    vertical-align: middle;
+  } 
+  
