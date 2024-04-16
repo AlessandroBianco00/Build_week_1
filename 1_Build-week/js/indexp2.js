@@ -97,91 +97,100 @@ const questions = [
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
   ];
-  
   let punteggio = 0;
   let numeroDomande = document.getElementById("numerodomande");
   let numeroSlide = 1;
   let arraydomande = [...questions];
-  let secondi = 60; 
-  console.log(arraydomande) // andato!
   
-    // VARIABILI CON LA FUNZIONE PER IL TIMER 
-    let divOrario = document.querySelector('#tempo');
-
-    function timer() {
-    secondi -= 1;
-    divOrario.innerHTML = `Tempo ${secondi} rimanente` 
-    };
-    setInterval(timer, 200);
+  let secondi = 60;
+  let timerInterval; // Variabile per memorizzare l'intervallo del timer
   
-
-    function shuffleArray(arr) {
-    arr.sort(() => Math.random() - 0.5);
-    return arr;
-    }
-
-    function functiondomande() {
-    
-      shuffleArray(arraydomande) // richiamo della funzione shuffle per randomizzare le domande
-        // timer() ------- richiamo la  funzione per il tempo
-        let boxDomande = document.getElementById("boxdomande");
-        let boxRisposte = document.getElementById("boxrisposte");
-        
-
-            // inserire le domande nell tag H1
-            let singoladomanda = arraydomande.pop();
-            boxDomande.innerHTML = singoladomanda.question;
-            
-            numeroDomande.innerHTML = `Domanda n° ${numeroSlide} <span> / ${questions.length}</span>`;
-            
-
-        // array delle risposte   
-            let tutteRisposte = [];
-        // inserire domande giuste e sbagliate in un array
-            tutteRisposte.push(singoladomanda.correct_answer);
-
-        // inserire le risposte sbagliate    
-            for(x = 0; x < singoladomanda.incorrect_answers.length; x++ ){
-                tutteRisposte.push(singoladomanda.incorrect_answers[x]);
-            }; shuffleArray(tutteRisposte) 
-            // inserire tutte le risposte dentro i div
-                for(y = 0 ; y < tutteRisposte.length ; y++) { 
-                    let rispostaDIV = document.createElement("div");
-                    rispostaDIV.innerHTML = tutteRisposte[y];
-                    rispostaDIV.classList.add("tastorisposta");
-                    // EXTRA: aggiungere cambio lista quando si clicca il div
-
-                    while(secondi > 0) {
-                    rispostaDIV.addEventListener("click", function() {
-                      secondi--;
-                       // Click della risposta giusta o sbagliata
-                        if (singoladomanda.correct_answer === rispostaDIV.innerHTML){
-                            console.log("bravissimooooo");
-                            punteggio += 1;
-                            console.log(punteggio);
-                            
-                        } else {
-                            console.log("sei stupido");
-                        };
-                        secondi = 60;
-                        // refresh delle domande 
-                        if (arraydomande.length === 0 ) {
-                            window.location.href = "fourth-page.html";
-                        }   else {
-                            boxRisposte.innerHTML = "";
-                            numeroSlide += 1;
-                            functiondomande();
-                        };       
-                   });
-                      boxRisposte.appendChild(rispostaDIV);
-                      setInterval(secondi-1, 1000);
-                  }; 
-                };
-              };
-        //inserire la risposta giusta
-        
- 
-
-
-functiondomande();
+  // Funzione per avviare il timer
+  function startTimer() {
+      secondi = 60; // Reimposta i secondi a 60 per ogni nuova domanda
+      const divOrario = document.querySelector('#tempo');
   
+      // Aggiorna il timer ad ogni intervallo di 1 secondo
+      timerInterval = setInterval(() => {
+          divOrario.innerHTML = `Tempo rimanente: ${secondi} secondi`;
+          secondi--;
+  
+          // Quando il timer raggiunge zero, passa automaticamente alla domanda successiva
+          if (secondi < 0) {
+              clearInterval(timerInterval);
+              // Passa alla domanda successiva se il tempo scade
+              goToNextQuestion();
+          }
+      }, 1000); // Esegui ogni secondo (1000 millisecondi)
+  }
+  
+  // Funzione per mescolare un array (shuffle)
+  function shuffleArray(arr) {
+      arr.sort(() => Math.random() - 0.5);
+      return arr;
+  }
+  
+  // Funzione per gestire la transizione alla domanda successiva
+  function goToNextQuestion() {
+      clearInterval(timerInterval); // Interrompi il timer corrente
+      if (arraydomande.length === 0) {
+          // Se non ci sono più domande, reindirizza alla pagina successiva o esegui altre azioni
+          window.location.href = "fourth-page.html";
+      } else {
+          numeroSlide++;
+          functionDomande(); // Carica la prossima domanda
+      }
+  }
+  
+  // Funzione per visualizzare e gestire una nuova domanda
+  function functionDomande() {
+      const boxDomande = document.getElementById("boxdomande");
+      const boxRisposte = document.getElementById("boxrisposte");
+  
+      // Reimposta il contenuto delle risposte
+      boxRisposte.innerHTML = '';
+  
+      // Ottieni la prossima domanda
+      const singolaDomanda = arraydomande.pop();
+  
+      // Visualizza la domanda nel box
+      boxDomande.innerHTML = singolaDomanda.question;
+      numeroDomande.innerHTML = `Domanda n° ${numeroSlide} / ${questions.length}`;
+  
+      // Mescola tutte le risposte (corretta e sbagliate)
+      const tutteRisposte = [singolaDomanda.correct_answer, ...singolaDomanda.incorrect_answers];
+      shuffleArray(tutteRisposte);
+  
+      // Visualizza le risposte nel box delle risposte
+      tutteRisposte.forEach(risposta => {
+          const rispostaDIV = document.createElement("div");
+          rispostaDIV.textContent = risposta;
+          rispostaDIV.classList.add("tastorisposta");
+  
+          // Aggiungi l'evento click per gestire la risposta
+          rispostaDIV.addEventListener("click", () => {
+              clearInterval(timerInterval); // Interrompi il timer corrente
+  
+              if (risposta === singolaDomanda.correct_answer) {
+                  // Se la risposta è corretta
+                  console.log("Risposta corretta!");
+                  punteggio++;
+              } else {
+                  // Se la risposta è sbagliata
+                  console.log("Risposta sbagliata!");
+              }
+  
+              // Passa alla prossima domanda
+              goToNextQuestion();
+          });
+  
+          // Aggiungi la risposta al box delle risposte
+          boxRisposte.appendChild(rispostaDIV);
+      });
+  
+      // Avvia il timer per la nuova domanda
+      startTimer();
+  }
+  
+  // Avvia la prima domanda all'avvio dello script
+  functionDomande();

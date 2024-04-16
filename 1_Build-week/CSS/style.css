@@ -149,7 +149,12 @@ input[type="checkbox"] {
 
 
 /********************* FOOTER ************/
-
+.stelle {
+    fill: #000;   
+}
+.stellacliccata {
+ fill: #00ffff;   
+}
 footer input{
     background-color: transparent;
     border: none;
@@ -165,6 +170,7 @@ hr {
     margin-top: 2em;
     float: none;
 }
+
 ::placeholder {
     font-family: "Inter", sans-serif;
     font-size: 1.4em;
