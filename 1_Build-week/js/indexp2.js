@@ -101,7 +101,6 @@ const questions = [
   let numeroDomande = document.getElementById("numerodomande");
   let numeroSlide = 1;
   let arraydomande = [...questions];
-  
   let secondi = 60;
   let timerInterval; // Variabile per memorizzare l'intervallo del timer
   
