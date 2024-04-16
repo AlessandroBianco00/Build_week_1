@@ -32,11 +32,18 @@ header img {
     font-weight: bold;
     font-size: 1.2em;
     padding: 1vw 2.2vw;
-    float: right;
     border: none;
     box-shadow: 0 0 10px #00ffff;
     cursor: pointer;
 }
+
+/********************MAIN CENTRATO PER LE PAGINE *************************/
+.main-centrato {
+    text-align: center;
+    padding-left: 20em;
+    padding-right: 24em;
+}
+
 /**************************** PRIMA PAGINA *******************/
 /*HEADER*/
 
@@ -97,19 +104,43 @@ input[type="checkbox"] {
     vertical-align: middle;
   } 
 
+#bottoneDestro {
+    float: right;
+}
+/************************* SECONDA PAGINA *******************************/
 
-
-
+#boxdomande {
+    font-size: 2.5em;
+    line-height: 1.25;
+}
+#tempo {
+    float: right;
+}
+#boxrisposte { 
+    margin-bottom: 7em;  
+}
+.tastorisposta {
+    display: inline-block;
+    border: 2px solid transparent;
+    padding: 1em 2em;
+    width: 12em;
+    max-height: 10em;
+    margin: 2em;
+    border-radius: 30px;
+    background-color: rgba(156, 153, 153, 0.1);
+    box-shadow: -1px -1px 2px rgb(230, 226, 226);
+    font-weight: bold;
+    cursor: pointer;
+} 
+#numerodomande span {
+    color:#d20094;
+}
 /************************** QUARTA PAGINA ****************/
 
 
 /******************************MAIN*******************/
 
-#fpage {
- padding-left: 20em;
- padding-right: 24em;
- text-align: center;
-}
+
 
 #fpage p {
     font-size: 1.5em;
