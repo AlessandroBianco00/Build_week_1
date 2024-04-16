@@ -23,7 +23,6 @@ b { /*RIPRISTINO IL BOLD*/
     font-weight: bold;
 }
 
-
 /*HEADER*/
 header {
     height: 2vw;
@@ -34,16 +33,24 @@ header img {
     height: 100%;
 }
 
-button{
+.allbutton {
     background-color: #00ffff;
     font-weight: bold;
     font-size: 1.2em;
-    padding: 1vw 3vw;
+    padding: 1vw 2.2vw;
     border: none;
     box-shadow: 0 0 10px #00ffff;
+    cursor: pointer;
 }
 
-/* ------------------------------------- PAGINA UNO --------------------------- */
+/********************MAIN CENTRATO PER LE PAGINE *************************/
+.main-centrato {
+    text-align: center;
+    padding-left: 20em;
+    padding-right: 24em;
+}
+
+/**************************** PRIMA PAGINA *******************/
 
 /*MAIN*/
 
@@ -75,7 +82,6 @@ ul {
     width: 100%;
 }
 
-/* CHECKBOX CUSTOMIZZATO */
 input[type="checkbox"] {
     display: none;
 }
@@ -90,52 +96,93 @@ input[type="checkbox"] + label::before {
     margin-right: 1vw;
     vertical-align: middle;
 }
+
 input[type="checkbox"]:checked + label::before {
     content: "\2713"; 
     font-size: 1em;
-    line-height: 1em;
+    line-height: 1.5em;
     text-align: center;
     color: white;
 }
+
 label {
     color: white;
     vertical-align: middle;
 } 
 
-#bottone-destro {
+#bottoneDestro {
     float: right;
 }
-  /* --------------------------------- PAGINA QUATTRO --------------------------*/
+/************************* SECONDA PAGINA *******************************/
 
-.main-centrato {
-    text-align: center;
+#boxdomande {
+    font-size: 2.5em;
+    line-height: 1.25;
 }
 
-h2 {
-    font-size: 3em;
-    line-height: 0.7;
-    margin-bottom: 2vw;
+#tempo {
+    float: right;
 }
 
-.main-centrato p {
-    font-size: 1.3em;
+#boxrisposte { 
+    margin-bottom: 7em;  
 }
 
-#stelle {
-    margin-bottom: 5vw;
+.tastorisposta {
+    display: inline-block;
+    border: 2px solid transparent;
+    padding: 1em 2em;
+    width: 12em;
+    max-height: 10em;
+    margin: 2em;
+    border-radius: 30px;
+    background-color: rgba(156, 153, 153, 0.1);
+    box-shadow: -1px -1px 2px rgb(230, 226, 226);
+    font-weight: bold;
+    cursor: pointer;
+} 
+
+#numerodomande span {
+    color:#d20094;
+}
+/************************** QUARTA PAGINA ****************/
+
+
+/******************************MAIN*******************/
+
+
+
+#fpage p {
+    font-size: 1.5em;
+    margin-top: 1em;
 }
 
-#stelle img {
-    margin: 0.2vw;
+
+/********************* FORM ************/
+.stelle {
+    fill: #000;
+    cursor: pointer;
 }
 
-#commento {
+.stellacliccata {
+ fill: #00ffff;   
+}
+
+.main-centrato input{
     background-color: transparent;
-    width: 60%;
-    padding: 1vw;
     border: none;
-    border-bottom: #d20094 solid 1px;
-    margin-bottom: 5vw;
+    opacity: 0.8;
+    color: #ffffff;
+    width: 88%;
+}
+
+hr {
+    border: 1px solid #d20094;
+}
+
+#minfo {
+    margin-top: 2em;
+    float: none;
 }
 
 ::placeholder {
