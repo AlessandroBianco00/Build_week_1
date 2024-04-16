@@ -106,7 +106,7 @@ function startTimer() {
   let divOrario = document.querySelector('#tempo');
   // Aggiorna il timer ad ogni intervallo di 1 secondo
   timerInterval = setInterval(() => {
-    divOrario.innerHTML = `Tempo rimanente: ${secondi} secondi`;
+    divOrario.innerHTML = `SECONDS ${secondi} REMAINING`;
     secondi--;
     if (secondi < 0) {
       // Quando il timer raggiunge zero, passa automaticamente alla domanda successiva
@@ -141,7 +141,7 @@ function functionDomande() {
   boxRisposte.innerHTML = ''; // Reimposta il contenuto delle risposte
   let singolaDomanda = arraydomande.pop();   // Ottieni la prossima domanda
   boxDomande.innerHTML = singolaDomanda.question; // Visualizza la domanda nel box
-  numeroDomande.innerHTML = `Domanda n° ${numeroSlide} / ${questions.length}`;
+  numeroDomande.innerHTML = `QUESTION ${numeroSlide} <span id="numerodomande">/ ${questions.length}</span>`;
   // Mescola tutte le risposte (corretta e sbagliate)
   let tutteRisposte = [singolaDomanda.correct_answer, ...singolaDomanda.incorrect_answers];
   shuffleArray(tutteRisposte);
