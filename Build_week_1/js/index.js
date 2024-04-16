@@ -1,3 +1,4 @@
+/* --------------------------------- JS PAGINA 1 ---------------------------*/
 function redirectToSecondPage() {
     var checkbox = document.getElementById("spunta");
     if (checkbox.checked) {

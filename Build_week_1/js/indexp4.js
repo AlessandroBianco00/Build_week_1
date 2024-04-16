@@ -1,3 +1,4 @@
+/* --------------------------------- JS PAGINA 4 ---------------------------*/
 let allStelle = document.querySelectorAll(".stelle");
 
 for (let z = 0; z < allStelle.length; z++) {
