@@ -119,9 +119,10 @@ label {
     font-size: 2.5em;
     line-height: 1.25;
 }
-
-#tempo {
+#tempoEst {
     float: right;
+    text-align: center;
+    line-height: 0;
 }
 
 #boxrisposte { 
@@ -151,7 +152,14 @@ label {
 #donutchart1 {
     width: 30vw;
     height: 30vw;
+    padding: 0;
 }
+
+#rispostecorrette, #rispostesbagliate {
+    display: inline;
+    vertical-align: top;
+}
+
 
 /************************** QUARTA PAGINA ****************/
 

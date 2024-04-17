@@ -1,3 +1,22 @@
+google.charts.load('current', {'packages':['corechart']});
+
+function drawChart(data) {
+  var options = {
+    pieHole: 0.8,
+    legend: 'none',
+    backgroundColor: 'transparent',
+    pieSliceText: 'none',
+    slices: {
+      0: { color:'gray' }, // Colore per il tempo trascorso
+      1: { color: '#00FFFF' } // Colore per il tempo rimanente
+    }
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('chartTimer'));
+  chart.draw(data, options);
+}
+
+
 /* --------------------------------- JS PAGINA 1 ---------------------------*/
 const questions = [
   {
@@ -100,13 +119,19 @@ let punteggio = 0;
 let numeroDomande = document.getElementById("numerodomande");
 let arraydomande = [...questions];
 
-// Funzione per avviare il timer
 function startTimer() {
-  secondi = 60; // Reimposta i secondi a 60 per ogni nuova domanda
-  let divOrario = document.querySelector('#tempo');
+  var data = google.visualization.arrayToDataTable([
+    ['Task', 'Seconds'],
+    ['Tempo Trascorso', 0],
+    ['Tempo Rimanente', 60]
+  ]);
+
   // Aggiorna il timer ad ogni intervallo di 1 secondo
-  timerInterval = setInterval(() => {
-    divOrario.innerHTML = `SECONDS ${secondi} REMAINING`;
+  var timerInterval = setInterval(() => {
+    // Update data here as needed
+    data.setValue(1, 1, secondi);
+    drawChart(data);
+
     secondi--;
     if (secondi < 0) {
       // Quando il timer raggiunge zero, passa automaticamente alla domanda successiva
