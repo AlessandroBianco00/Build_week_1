@@ -119,9 +119,10 @@ label {
     font-size: 2.5em;
     line-height: 1.25;
 }
-
-#tempo {
+#tempoEst {
     float: right;
+    text-align: center;
+    line-height: 0;
 }
 
 #boxrisposte { 
@@ -135,7 +136,7 @@ label {
     width: 12em;
     max-height: 10em;
     margin: 2em;
-    border-radius: 30px;
+    border-radius: 50px;
     background-color: rgba(156, 153, 153, 0.1);
     box-shadow: -1px -1px 2px rgb(230, 226, 226);
     font-weight: bold;
@@ -145,6 +146,21 @@ label {
 #numerodomande span {
     color:#d20094;
 }
+
+/************************** TERZA PAGINA ****************/
+
+#donutchart1 {
+    width: 30vw;
+    height: 30vw;
+    padding: 0;
+}
+
+#rispostecorrette, #rispostesbagliate {
+    display: inline;
+    vertical-align: top;
+}
+
+
 /************************** QUARTA PAGINA ****************/
 
 
