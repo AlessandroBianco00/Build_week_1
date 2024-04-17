@@ -167,3 +167,82 @@ function functionDomande() {
 }
   
 functionDomande(); // Avvia la prima domanda all'avvio dello script
+
+//******************************************************************** tentativo di gestione su unica pagina di pag 4************************************************************************************************ */
+
+function showDonutChart(percentageCorrect, percentageWrong) {
+  // Carica la libreria di Google Charts
+  google.charts.load('current', {'packages':['corechart']});
+
+  // Callback quando la libreria è stata caricata
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+      // Crea i dati per il grafico a ciambella
+      var data = google.visualization.arrayToDataTable([
+          ['Risposte', 'Percentuale'],
+          ['Risposte Corrette', percentageCorrect],
+          ['Risposte Sbagliate', percentageWrong]
+      ]);
+
+      // Opzioni per il grafico a ciambella
+      var options = {
+        title: 'Risultato del Quiz',
+        pieHole: 0.7,
+        colors: ['blue', 'grey'],
+        backgroundColor: 'transparent', // Imposta il background trasparente
+        legend: {
+            position: 'none' // Nascondi la legenda predefinita
+        },
+        chartArea: {
+            width: '90%', // Imposta la larghezza dell'area del grafico
+            height: '90%' // Imposta l'altezza dell'area del grafico
+        },
+        pieSliceText: 'percentage', // Mostra le percentuali nelle fette del grafico
+        pieSliceTextStyle: {
+            color: 'white', // Colore del testo delle percentuali
+            fontSize: 30 // Dimensione del testo delle percentuali
+        }
+    };
+
+      // Seleziona l'elemento HTML in cui visualizzare il grafico a ciambella
+      var chart = new google.visualization.PieChart(document.getElementById('donutChart'));
+
+      // Disegna il grafico a ciambella con le opzioni specificate
+      chart.draw(data, options);
+  }
+}
+
+
+function showResults() {
+  // Nascondi il box delle domande e delle risposte
+  document.getElementById("boxdomande").style.display = "none";
+  document.getElementById("boxrisposte").style.display = "none";
+document.getElementById("tempo").style.display = "none";
+  document.getElementById("numerodomande").style.display = "none";
+
+// Calcola il numero totale di domande e risposte corrette
+  let totalQuestions = questions.length;
+  let correctAnswers = punteggio;
+  let wrongAnswers = totalQuestions - correctAnswers;
+
+  // Calcola le percentuali di risposte corrette e sbagliate
+  let percentageCorrect = (correctAnswers / totalQuestions) * 100;
+  let percentageWrong = (wrongAnswers / totalQuestions) * 100;
+
+  // Mostra il grafico a ciambella con le percentuali di risposte corrette e sbagliate
+  showDonutChart(percentageCorrect, percentageWrong);
+}
+
+
+function goToNextQuestion() {
+  clearInterval(timerInterval); // Interrompi il timer corrente
+
+  if (arraydomande.length === 0) {
+      // Mostra il risultato finale con il grafico a ciambella
+      showResults();
+  } else {
+      numeroSlide++;
+      functionDomande(); // Carica la prossima domanda
+  }
+}
