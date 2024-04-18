@@ -33,7 +33,9 @@ header img {
     height: 100%;
 }
 
-.allbutton {
+/* BOTTONI AZZURRI (PAGINA 1, 4)*/
+
+.bluebutton {
     background-color: #00ffff;
     font-weight: bold;
     font-size: 1.2em;
@@ -158,6 +160,8 @@ h1 + p {
     text-align: center;
 }
 
+/***************TABELLA CON GRAFICA*******************/
+
 table {
     width: 100%;
 }
@@ -173,10 +177,6 @@ td {
 }
 
 .charts {
-    display: inline-block;
-}
-
-.domande p {
     display: inline-block;
 }
 

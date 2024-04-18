@@ -97,12 +97,11 @@ localStorage.setItem("totaleDomande", questions.length); // Esportazione varaibi
 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
-let secondi = 60;
 let timerInterval; // Variabile per memorizzare l'intervallo del timer
-let numeroSlide = 1;
+let numeroSlide = 1; // Variabile per contare il numero della domanda corrente
 let punteggio = 0;
 let numeroDomande = document.getElementById("numerodomande");
-let arraydomande = [...questions];
+let arraydomande = [...questions]; // Copia array (che viene svuotata)
 let tempoText = document.getElementById("tempoText");
   
 // Funzione per disegnare il grafico del timer
@@ -160,7 +159,7 @@ function shuffleArray(arr) {
   if (arraydomande.length === 0) {
     // Se non ci sono più domande, reindirizza alla pagina successiva o esegui altre azioni
     window.location.href = "index_tre.html";
-    localStorage.setItem("punteggioUtente",punteggio);
+    localStorage.setItem("punteggioUtente",punteggio); // Codice per esportare la variabile
   } else {
     numeroSlide++;
     drawChart(); // Avvia il timer per la nuova domanda
@@ -173,6 +172,7 @@ function functionDomande() {
   let boxDomande = document.getElementById("boxdomande");
   let boxRisposte = document.getElementById("boxrisposte");
   boxRisposte.innerHTML = ''; // Reimposta il contenuto delle risposte
+  shuffleArray(arraydomande);
   let singolaDomanda = arraydomande.pop();   // Ottieni la prossima domanda
   boxDomande.innerHTML = singolaDomanda.question; // Visualizza la domanda nel box
   numeroDomande.innerHTML = `Domanda n° ${numeroSlide} / <span>${questions.length} </span>`;
