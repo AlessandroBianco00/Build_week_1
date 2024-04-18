@@ -1,26 +1,42 @@
-google.charts.load("visualization", "1", {
-    packages: ["corechart"]
-  });
-  google.charts.setOnLoadCallback(init);
+//IMPORTAZIONE VARIABILE 
+let punteggioUtente = localStorage.getItem("punteggioUtente");
+let totaleDomande = localStorage.getItem("totaleDomande");
+// DICHIARAZIONE CONTENITORI DOVE ANDARE A SCRIVERE IL PUNTEGGIO
+let boxCorrette = document.getElementById("corrette");
+let boxSbagliate = document.getElementById("sbagliate");
+
+function redirectToFourthPage() {
+  window.location.href = "fourth_page.html";
+}
+
+  window.onload = function() {
+  
+  boxCorrette.innerHTML = `<p class="testoCalcolo"> <span>Correct<br> <b>${(punteggioUtente/totaleDomande)*100}% </span></b><br>${punteggioUtente}/${totaleDomande} questions </p>`;
 
 
-  function drawChart(chartID, heading, known, unknown) {
+  boxSbagliate.innerHTML = `<p class="testoCalcolo"> <span>Wrong <br> <b>${[(totaleDomande-punteggioUtente)/totaleDomande]*100}%</span></b><br>${totaleDomande-punteggioUtente}/${totaleDomande} questions </p>`;}
 
+   google.charts.load("visualization", "1", {packages: ["corechart"]}); 
+   google.charts.setOnLoadCallback(init);
+
+
+function drawChart(chartID, heading) {
     var chart = new google.visualization.PieChart(document.getElementById(chartID));
     var data = google.visualization.arrayToDataTable([
-      ['Knowledge', 'Out of 10'],
-      ['Known', known],
-      ['Unknown', unknown]
+      ['Totale Domande', totaleDomande],
+      ['Sbagliate', parseInt(totaleDomande-punteggioUtente)],
+      ['Corrette', parseInt(punteggioUtente)]
     ]);
     var options = {
       title: heading,
       titleTextStyle: {
-        color: 'red', // Cambia il colore del testo del titolo a rosso
-        fontSize: 18 // Specifica la dimensione del carattere del titolo
+        color: 'white',
+        fontSize: 16, 
       },
+      
       pieHole: 0.7,
       backgroundColor: 'transparent',
-      colors: ['#00FFFF', '#d20094'],
+      colors: ['#d20094', '#00FFFF'],
       pieSliceText: 'none',
       legend: {
         position: 'none'
@@ -41,17 +57,21 @@ google.charts.load("visualization", "1", {
   function centerText(chart, idx, X, Y) {
     var cht = document.querySelector(chart);
     var txt = document.querySelectorAll(chart + " text");
-    //var chW = cht.width/2;
-    //var chH = cht.height/2;
-    //var txW = txt[idx].width/2;
-    //var txH = txt[idx].height/2;
-    //var W = chW - txW;
-    //var H = chH - txH;
     txt[idx].setAttribute('x', X);
     txt[idx].setAttribute('y', Y);
   }
+    function risultato() {
+      if(punteggioUtente/totaleDomande >= 0.6)  {
+          return `You passed the exam.`;
+      } else {
+        return "You didn't pass the exam."
+      }
+    }
 
-  function init() {
-    drawChart('donutchart1', 'VB.NET', 8, 2);
-    centerText('#donutchart1', 0, 180, 215);
-  }
+    
+    function init() {
+      drawChart('donutchart1', risultato());
+      centerText('#donutchart1', 0, 205, 290);
+    } 
+    
+

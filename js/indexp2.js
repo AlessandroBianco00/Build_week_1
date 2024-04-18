@@ -1,22 +1,3 @@
-google.charts.load('current', {'packages':['corechart']});
-
-function drawChart(data) {
-  var options = {
-    pieHole: 0.8,
-    legend: 'none',
-    backgroundColor: 'transparent',
-    pieSliceText: 'none',
-    slices: {
-      0: { color:'gray' }, // Colore per il tempo trascorso
-      1: { color: '#00FFFF' } // Colore per il tempo rimanente
-    }
-  };
-
-  var chart = new google.visualization.PieChart(document.getElementById('chartTimer'));
-  chart.draw(data, options);
-}
-
-
 /* --------------------------------- JS PAGINA 1 ---------------------------*/
 const questions = [
   {
@@ -112,6 +93,11 @@ const questions = [
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
 ];
+
+export var numeroDomandeEst = questions.length;
+console.log(numeroDomandeEst)
+
+
 let secondi = 60;
 let timerInterval; // Variabile per memorizzare l'intervallo del timer
 let numeroSlide = 1;
@@ -119,19 +105,13 @@ let punteggio = 0;
 let numeroDomande = document.getElementById("numerodomande");
 let arraydomande = [...questions];
 
+// Funzione per avviare il timer
 function startTimer() {
-  var data = google.visualization.arrayToDataTable([
-    ['Task', 'Seconds'],
-    ['Tempo Trascorso', 0],
-    ['Tempo Rimanente', 60]
-  ]);
-
+  secondi = 60; // Reimposta i secondi a 60 per ogni nuova domanda
+  let divOrario = document.querySelector('#tempo');
   // Aggiorna il timer ad ogni intervallo di 1 secondo
-  var timerInterval = setInterval(() => {
-    // Update data here as needed
-    data.setValue(1, 1, secondi);
-    drawChart(data);
-
+  timerInterval = setInterval(() => {
+    divOrario.innerHTML = `Tempo rimanente: ${secondi} secondi`;
     secondi--;
     if (secondi < 0) {
       // Quando il timer raggiunge zero, passa automaticamente alla domanda successiva
@@ -166,7 +146,7 @@ function functionDomande() {
   boxRisposte.innerHTML = ''; // Reimposta il contenuto delle risposte
   let singolaDomanda = arraydomande.pop();   // Ottieni la prossima domanda
   boxDomande.innerHTML = singolaDomanda.question; // Visualizza la domanda nel box
-  numeroDomande.innerHTML = `QUESTION ${numeroSlide} <span id="numerodomande">/ ${questions.length}</span>`;
+  numeroDomande.innerHTML = `Domanda n° ${numeroSlide} / <span>${questions.length} </span>`;
   // Mescola tutte le risposte (corretta e sbagliate)
   let tutteRisposte = [singolaDomanda.correct_answer, ...singolaDomanda.incorrect_answers];
   shuffleArray(tutteRisposte);
@@ -192,3 +172,25 @@ function functionDomande() {
 }
   
 functionDomande(); // Avvia la prima domanda all'avvio dello script
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
