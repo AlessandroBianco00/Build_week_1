@@ -179,6 +179,7 @@ td {
     color: white;
     padding: 1vw 3.5vw;
     font-size: 1.2em;
+    cursor: pointer;
 }
 
 .testoCalcolo {

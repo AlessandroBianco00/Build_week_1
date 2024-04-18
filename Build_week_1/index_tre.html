@@ -18,17 +18,26 @@
         <table> 
             <tr class="charts">
                 <td id="corrette" class="domande"></td>
-                <td id="donutchart1"></td>
+                <td id="donutchart1">
+                </td>
                 <td id="sbagliate" class="domande"></td>
             </tr>
         </table>
-        <button id="button3"><b>RATE US</b></button>
+        <form onsubmit="">
+            <button type="button" id="button3" onclick="redirectToFourthPage()"><b>RATE US</b></button>
+        </form>
     </main>
     
     
     
 
 <script src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="module" src="./js/indexp3.js"></script>
+<script  src="./js/indexp3.js"></script>
+
+<!--<script>
+    function redirectToFourthPage() {
+    window.location.href = "fourth_page.html";
+    }
+</script> -->
 </body>
 </html>

@@ -142,7 +142,7 @@ function drawChart() {
         clearInterval(timerInterval);
         goToNextQuestion(); // Se il tempo è scaduto, interrompiamo l'aggiornamento del grafico
       }
-      tempoText.innerHTML = `${remainingSeconds} Seconds remaining`;
+      tempoText.innerHTML = `Seconds ${remainingSeconds}  remaining`;
 
 
 
