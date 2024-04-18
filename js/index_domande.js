@@ -1,4 +1,3 @@
-/* --------------------------------- JS PAGINA 1 ---------------------------*/
 const questions = [
   {
     category: "Science: Computers",
@@ -16,7 +15,7 @@ const questions = [
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
-    question: "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?",
+    question: "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: "Final",
     incorrect_answers: ["Static", "Private", "Public"],
   },
@@ -94,31 +93,59 @@ const questions = [
   },
 ];
 
-export var numeroDomandeEst = questions.length;
-console.log(numeroDomandeEst)
+localStorage.setItem("totaleDomande", questions.length); // Esportazione varaibile lunghezza (domande totali)
 
-
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 let secondi = 60;
 let timerInterval; // Variabile per memorizzare l'intervallo del timer
 let numeroSlide = 1;
 let punteggio = 0;
 let numeroDomande = document.getElementById("numerodomande");
 let arraydomande = [...questions];
+let tempoText = document.getElementById("tempoText");
+  
+// Funzione per disegnare il grafico del timer
+function drawChart() {
+  clearInterval(timerInterval); // Interrompi il timer corrente
+  var data = google.visualization.arrayToDataTable([
+    ['Task', 'Seconds'],
+    ['Tempo Trascorso', 0],
+    ['Tempo Rimanente', 60]
+  ]);
 
-// Funzione per avviare il timer
-function startTimer() {
-  secondi = 60; // Reimposta i secondi a 60 per ogni nuova domanda
-  let divOrario = document.querySelector('#tempo');
-  // Aggiorna il timer ad ogni intervallo di 1 secondo
-  timerInterval = setInterval(() => {
-    divOrario.innerHTML = `Tempo rimanente: ${secondi} secondi`;
-    secondi--;
-    if (secondi < 0) {
-      // Quando il timer raggiunge zero, passa automaticamente alla domanda successiva
-      clearInterval(timerInterval); 
-      goToNextQuestion();
+  var options = {
+    pieHole: 0.8,
+    legend: 'none',
+    backgroundColor: 'transparent',
+    pieSliceText: 'none',
+    border: 'none',
+    slices: {
+      0: { color: 'gray'}, // Colore per il tempo trascorso
+      1: { color: '#00FFFF'}  // Colore per il tempo rimanente
     }
-  }, 1000); // 1000 millisecondi
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('tempo'));
+  
+  function updateChart() {
+    var now = new Date().getTime();
+    var elapsed = now - start;
+    var remainingTime = Math.max(totalTime - elapsed, 0); // Calcoliamo il tempo rimanente
+    var elapsedSeconds = Math.ceil(elapsed / 1000); // Convertiamo il tempo trascorso in secondi
+    var remainingSeconds = Math.ceil(remainingTime / 1000); // Convertiamo il tempo rimanente in secondi
+    data.setValue(0, 1, elapsedSeconds);
+    data.setValue(1, 1, remainingSeconds);
+    chart.draw(data, options);
+    if (remainingTime <= 0) {
+      clearInterval(timerInterval);
+      goToNextQuestion(); // Se il tempo è scaduto, interrompiamo l'aggiornamento del grafico
+    }
+    tempoText.innerHTML = `Seconds ${remainingSeconds}  remaining`;
+  }
+  var start = new Date().getTime();
+  var totalTime = 60 * 1000; // Tempo totale in millisecondi (60 secondi)
+  timerInterval = setInterval(updateChart, 1000); // Intervallo di aggiornamento ogni secondo
 }
   
 // Funzione per mescolare un array (shuffle)
@@ -128,13 +155,15 @@ function shuffleArray(arr) {
 }
   
 // Funzione per gestire la transizione alla domanda successiva
-function goToNextQuestion() {
+  function goToNextQuestion() {
   clearInterval(timerInterval); // Interrompi il timer corrente
   if (arraydomande.length === 0) {
     // Se non ci sono più domande, reindirizza alla pagina successiva o esegui altre azioni
-    window.location.href = "fourth-page.html";
+    window.location.href = "index_tre.html";
+    localStorage.setItem("punteggioUtente",punteggio);
   } else {
     numeroSlide++;
+    drawChart(); // Avvia il timer per la nuova domanda
     functionDomande(); // Carica la prossima domanda
   }
 }
@@ -168,29 +197,6 @@ function functionDomande() {
     });
     boxRisposte.appendChild(rispostaDIV); // Aggiungi la risposta al box delle risposte
   });
-  startTimer(); // Avvia il timer per la nuova domanda
 }
   
 functionDomande(); // Avvia la prima domanda all'avvio dello script
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
