@@ -93,6 +93,11 @@ const questions = [
     incorrect_answers: ["Python", "C", "Jakarta"],
   },
 ];
+
+export var numeroDomandeEst = questions.length;
+console.log(numeroDomandeEst)
+
+
 let secondi = 60;
 let timerInterval; // Variabile per memorizzare l'intervallo del timer
 let numeroSlide = 1;
@@ -167,3 +172,25 @@ function functionDomande() {
 }
   
 functionDomande(); // Avvia la prima domanda all'avvio dello script
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

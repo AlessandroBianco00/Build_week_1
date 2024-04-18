@@ -92,7 +92,10 @@ const questions = [
       incorrect_answers: ["Python", "C", "Jakarta"],
     },
   ];
-  
+  // ESPORTAZIONE DI VARIABILE
+  localStorage.setItem("totaleDomande", questions.length);
+
+
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
   let secondi = 60;
@@ -161,7 +164,8 @@ function drawChart() {
     clearInterval(timerInterval); // Interrompi il timer corrente
     if (arraydomande.length === 0) {
       // Se non ci sono più domande, reindirizza alla pagina successiva o esegui altre azioni
-      window.location.href = "fourth-page.html";
+      window.location.href = "index_tre.html";
+      localStorage.setItem("punteggioUtente",punteggio);
     } else {
       numeroSlide++;
       drawChart(); // Avvia il timer per la nuova domanda
