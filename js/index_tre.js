@@ -5,11 +5,11 @@ let totaleDomande = localStorage.getItem("totaleDomande");
 let boxCorrette = document.getElementById("corrette");
 let boxSbagliate = document.getElementById("sbagliate");
 
-function redirectToFourthPage() {
+function redirectToFourthPage() {   //FUNZIONE COLLEGATA AL BOTTONE, PASSA ALLA QUARTA PAGINA
   window.location.href = "index_quattro.html";
 }
 
-window.onload = function() {
+window.onload = function() {    //STAMPA TESTO RISULTATI 
   boxCorrette.innerHTML = `<p class="testoCalcolo"> <span>Correct<br> <b>${(punteggioUtente/totaleDomande)*100}% </span></b><br>${punteggioUtente}/${totaleDomande} questions </p>`;
 
   boxSbagliate.innerHTML = `<p class="testoCalcolo"> <span>Wrong <br> <b>${[(totaleDomande-punteggioUtente)/totaleDomande]*100}%</span></b><br>${totaleDomande-punteggioUtente}/${totaleDomande} questions </p>`;
@@ -26,7 +26,7 @@ function drawChart(chartID, heading) {
     ['Sbagliate', parseInt(totaleDomande-punteggioUtente)],
     ['Corrette', parseInt(punteggioUtente)]
   ]);
-  var options = {
+  var options = {   //FORMATTAZIONE GRAFICO PUNTEGGIO
     title: heading,
     titleTextStyle: {
       color: 'white',
@@ -52,7 +52,7 @@ function drawChart(chartID, heading) {
   chart.draw(data, options);
 }
 
-function centerText(chart, idx, X, Y) {
+function centerText(chart, idx, X, Y) {   //CENTRAMENTO TESTO
   var cht = document.querySelector(chart);
   var txt = document.querySelectorAll(chart + " text");
   txt[idx].setAttribute('x', X);
@@ -60,7 +60,7 @@ function centerText(chart, idx, X, Y) {
 }
 
 function risultato() {
-  if(punteggioUtente/totaleDomande >= 0.6)  {
+  if(punteggioUtente/totaleDomande >= 0.6)  {   //VERIFICA PUNTEGGIO
     return `You passed the exam.`;
   } else {
     return "You didn't pass the exam."
