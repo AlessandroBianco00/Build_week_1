@@ -95,8 +95,6 @@ const questions = [
 
 localStorage.setItem("totaleDomande", questions.length); // Esportazione varaibile lunghezza (domande totali)
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 let timerInterval; // Variabile per memorizzare l'intervallo del timer
 let numeroSlide = 1; // Variabile per contare il numero della domanda corrente
 let punteggio = 0;
@@ -198,5 +196,8 @@ function functionDomande() {
     boxRisposte.appendChild(rispostaDIV); // Aggiungi la risposta al box delle risposte
   });
 }
-  
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
 functionDomande(); // Avvia la prima domanda all'avvio dello script
